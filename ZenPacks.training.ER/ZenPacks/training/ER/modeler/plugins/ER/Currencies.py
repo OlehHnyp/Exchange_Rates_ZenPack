@@ -24,7 +24,7 @@ class Currencies(PythonPlugin):
 
     requiredProperties = (
         "zCurrencyCodes",
-        "zApiKey",
+        "zCurrencyApiKey",
         )
 
     deviceProperties = PythonPlugin.deviceProperties + requiredProperties
@@ -41,7 +41,7 @@ class Currencies(PythonPlugin):
             log.error("{}: zCrCodes not set.".format(device.id))
             returnValue(None)
 
-        api_key = getattr(device, "zApiKey", None)
+        api_key = getattr(device, "zCurrencyApiKey", None)
         if not api_key:
             log.error("{}: API key not set.".format(device.id))
             returnValue(None)
