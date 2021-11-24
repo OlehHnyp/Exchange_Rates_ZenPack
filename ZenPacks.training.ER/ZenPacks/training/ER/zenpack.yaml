@@ -11,6 +11,9 @@ zProperties:
       - EUR
       - GBP
 
+  zApiKey:
+    type: password
+
 classes:
   ErDevice:
     base: [zenpacklib.Device]
@@ -22,11 +25,20 @@ classes:
     plural_label: Currencies
 
     properties:
-      name:
-        label: Currency name
+      full_name:
+        label: Currency full name
 
-      code:
-        label: Currency code
+      short_name:
+        label: Short name
 
 class_relationships:
-  ErDevice(ErDevice) 1:MC ErCurrency(ErCurrencies)
+  ErDevice(erDevice) 1:MC ErCurrency(erCurrencies)
+
+device_classes:
+  /ExchangeRates:
+    zProperties:
+      zPythonClass: ZenPacks.training.ER.ErDevice
+      zPingMonitorIgnore: true
+      zSnmpMonitorIgnore: true
+      zCollectorPlugins:
+        - ER.Currencies
