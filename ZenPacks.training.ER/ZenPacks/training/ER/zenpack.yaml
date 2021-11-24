@@ -1,1 +1,32 @@
 name: ZenPacks.training.ER
+
+zProperties:
+  DEFAULTS:
+    caregory: Exchange Rates
+
+  zCurrencyCodes:
+    type: lines
+    default:
+      - USD
+      - EUR
+      - GBP
+
+classes:
+  ErDevice:
+    base: [zenpacklib.Device]
+    label: Exchange Rates API
+
+  ErCurrency:
+    base: [zenpacklib.Component]
+    label: Currency
+    plural_label: Currencies
+
+    properties:
+      name:
+        label: Currency name
+
+      code:
+        label: Currency code
+
+class_relationships:
+  ErDevice(ErDevice) 1:MC ErCurrency(ErCurrencies)
