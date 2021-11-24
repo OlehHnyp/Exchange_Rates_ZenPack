@@ -32,7 +32,7 @@ classes:
         label: Short name
 
 class_relationships:
-  - ErDevice(erDevice) 1:MC ErCurrency(erCurrencies)
+  - ErDevice(erCurrencies) 1:MC ErCurrency(erDevice)
 
 device_classes:
   /ExchangeRates:
