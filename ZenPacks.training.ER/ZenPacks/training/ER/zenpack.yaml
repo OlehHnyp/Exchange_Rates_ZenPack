@@ -2,7 +2,7 @@ name: ZenPacks.training.ER
 
 zProperties:
   DEFAULTS:
-    caregory: Exchange Rates
+    category: Exchange Rates
 
   zCurrencyCodes:
     type: lines
