@@ -11,7 +11,7 @@ zProperties:
       - EUR
       - GBP
 
-  zApiKey:
+  zCurrencyApiKey:
     type: password
 
 classes:
