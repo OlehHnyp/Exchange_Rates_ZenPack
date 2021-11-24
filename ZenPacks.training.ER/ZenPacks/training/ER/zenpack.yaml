@@ -6,6 +6,7 @@ zProperties:
 
   zCurrencyCodes:
     type: lines
+    description: Currency codes to track.
     default:
       - USD
       - EUR
@@ -13,6 +14,11 @@ zProperties:
 
   zCurrencyApiKey:
     type: password
+    description: API key for app.exchangerate-api.com
+
+  zMetals:
+    type: lines
+    description: Metals to track (use Gold, Silver, Platinum, Palladium, Rhodium or Cobalt only).
 
 classes:
   ErDevice:
@@ -31,8 +37,14 @@ classes:
       short_name:
         label: Short name
 
+  ErMetal:
+    base: [zenpacklib.Component]
+    label: Precious Metal
+    plural_label: Precious Metals
+
 class_relationships:
   - ErDevice(erCurrencies) 1:MC ErCurrency(erDevice)
+  - ErDevice(erMetals) 1:MC ErMetal(erDevice)
 
 device_classes:
   /ExchangeRates:
