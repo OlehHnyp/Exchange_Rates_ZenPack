@@ -54,3 +54,4 @@ device_classes:
       zSnmpMonitorIgnore: true
       zCollectorPlugins:
         - ER.Currencies
+        - ER.Metals
