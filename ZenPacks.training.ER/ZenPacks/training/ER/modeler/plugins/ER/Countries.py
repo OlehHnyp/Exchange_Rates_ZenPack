@@ -17,7 +17,7 @@ class Countries(PythonPlugin):
     """
     ER Currencies modeler plugin.
     """
-    relname = "erCountries"
+    relname = "erDeviceCountries"
     modname = "ZenPacks.training.ER.ErCountry"
 
     custom_agent = CustomHttpAgent()
@@ -76,7 +76,7 @@ class Countries(PythonPlugin):
                 currency_id = self.prepId(currency_code)
                 timezones = ', '.join(country_data.get("timezones"))
                 rm.append(self.objectMap({
-                    "set_erCurrency": currency_id,
+                    "set_erCountryCurrency": currency_id,
                     "id": country_id,
                     "code": country_data.get("alpha2Code"),
                     "capital": country_data.get("capital"),

@@ -23,7 +23,7 @@ class Metals(PythonPlugin):
         """
         Asynchronously collect data from device. Return a deferred.
         """
-        log.info("{}: collecting data".format(device.id))
+        log.info("{}: collecting metals data".format(device.id))
 
         metals = getattr(device, "zMetals", None)
         if not metals:

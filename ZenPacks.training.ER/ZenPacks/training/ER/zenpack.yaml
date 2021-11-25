@@ -81,7 +81,8 @@ classes:
 class_relationships:
   - ErDevice(erCurrencies) 1:MC ErCurrency(erDevice)
   - ErDevice(erMetals) 1:MC ErMetal(erDevice)
-  - ErCurrency(erCountries) 1:MC ErCountry(erCurrency)
+  - ErDevice(erDeviceCountries) 1:MC ErCountry(ErDevice)
+  - ErCurrency(erCurrencyCountries) 1:M ErCountry(erCountryCurrency)
 
 device_classes:
   /ExchangeRates:
