@@ -76,6 +76,7 @@ classes:
 
       timezones:
         label: Timezones
+        type: lines
 
 
 class_relationships:

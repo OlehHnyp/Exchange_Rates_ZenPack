@@ -74,7 +74,6 @@ class Countries(PythonPlugin):
             for country_data in countries_data.get(currency_code):
                 country_id = self.prepId(country_data.get("name"))
                 currency_id = self.prepId(currency_code)
-                timezones = ', '.join(country_data.get("timezones"))
                 rm.append(self.objectMap({
                     "set_erCountryCurrency": currency_id,
                     "id": country_id,
@@ -84,6 +83,6 @@ class Countries(PythonPlugin):
                     "area": country_data.get("area"),
                     "independent": country_data.get("independent"),
                     "region": country_data.get("region"),
-                    "timezones": timezones,
+                    "timezones": country_data.get("timezones"),
                 }))
         return rm
