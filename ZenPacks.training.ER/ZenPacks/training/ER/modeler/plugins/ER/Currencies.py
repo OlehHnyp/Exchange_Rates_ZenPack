@@ -34,7 +34,7 @@ class Currencies(PythonPlugin):
         """
         Asynchronously collect data from device. Return a deferred.
         """
-        log.info("{}: collecting data".format(device.id))
+        log.info("{}: collecting currencies data".format(device.id))
 
         cr_codes = getattr(device, "zCurrencyCodes", None)
         if not cr_codes:
@@ -71,6 +71,7 @@ class Currencies(PythonPlugin):
                 json_body = json.loads(raw_body)
             except ValueError:
                 log.error("Can't deserialize response body: {}.\nDevice: {}".format(raw_body, device.id))
+                return None
             else:
                 currency_id = self.prepId(json_body["target_code"])
                 rm.append(self.objectMap({

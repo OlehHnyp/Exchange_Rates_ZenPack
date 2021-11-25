@@ -20,6 +20,10 @@ zProperties:
     type: lines
     description: Metals to track (use Gold, Silver, Platinum, Palladium, Rhodium or Cobalt only).
 
+  zMetalsApiKey:
+    type: password
+    description: Key for precious metals API.
+
 classes:
   ErDevice:
     base: [zenpacklib.Device]
@@ -42,9 +46,42 @@ classes:
     label: Precious Metal
     plural_label: Precious Metals
 
+  ErCountry:
+    base: [zenpacklib.Component]
+    label: Country
+    plural_label: Countries
+
+    properties:
+      code:
+        label: Code
+
+      independent:
+        type: boolean
+        label: Independent
+        enum: {false: "No", true: "Yes"}
+
+      capital:
+        label: Capital
+
+      region:
+        label: Region
+
+      area:
+        label: Area km\u00B2
+        type: float
+
+      population:
+        label: Population
+        type: int
+
+      timezones:
+        label: Timezones
+
+
 class_relationships:
   - ErDevice(erCurrencies) 1:MC ErCurrency(erDevice)
   - ErDevice(erMetals) 1:MC ErMetal(erDevice)
+  - ErCurrency(erCountries) 1:MC ErCountry(erCurrency)
 
 device_classes:
   /ExchangeRates:
@@ -55,3 +92,4 @@ device_classes:
       zCollectorPlugins:
         - ER.Currencies
         - ER.Metals
+        - ER.Countries
