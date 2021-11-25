@@ -10,7 +10,7 @@ class Metals(PythonPlugin):
     ER Precious Metals modeler plugin.
     """
     relname = "erMetals"
-    modname = "ZenPacks.training.ErMetal"
+    modname = "ZenPacks.training.ER.ErMetal"
 
     requiredProperties = (
         "zMetals",
