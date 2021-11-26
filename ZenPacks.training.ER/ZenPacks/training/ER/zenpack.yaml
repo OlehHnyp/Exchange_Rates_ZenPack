@@ -38,7 +38,7 @@ classes:
     properties:
       USD:
         label: To USD
-        datapoint: exchangeRates_USD
+        datapoint: rates_USD
 
       full_name:
         label: Currency full name
@@ -106,7 +106,7 @@ device_classes:
         targetPythonClass: ZenPacks.training.ER.ErCurrency
 
       datasources:
-        exchangeRates:
+        rates:
           type: Python
           plugin_classname: ZenPacks.training.ER.dsplugins.ExchangeRates
           cycletime: "3600"
@@ -128,26 +128,26 @@ device_classes:
 
           graphpoints:
             USD:
-              dpName: exchangeRates_USD
+              dpName: rates_USD
               format: "%7.4lf"
             EUR:
-              dpName: exchangeRates_EUR
+              dpName: rates_EUR
               format: "%7.4lf"
             JPY:
-              dpName: exchangeRates_JPY
+              dpName: rates_JPY
               format: "%7.4lf"
             GBP:
-              dpName: exchangeRates_GBP
+              dpName: rates_GBP
               format: "%7.4lf"
             AUD:
-              dpName: exchangeRates_AUD
+              dpName: rates_AUD
               format: "%7.4lf"
             CAD:
-              dpName: exchangeRates_CAD
+              dpName: rates_CAD
               format: "%7.4lf"
             CHF:
-              dpName: exchangeRates_CHF
+              dpName: rates_CHF
               format: "%7.4lf"
             CNH:
-              dpName: exchangeRates_CNH
+              dpName: rates_CNH
               format: "%7.4lf"
