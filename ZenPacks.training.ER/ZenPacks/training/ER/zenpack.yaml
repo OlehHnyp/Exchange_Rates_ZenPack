@@ -58,7 +58,6 @@ classes:
       independent:
         type: boolean
         label: Independent
-        enum: {false: "No", true: "Yes"}
 
       capital:
         label: Capital
@@ -67,7 +66,7 @@ classes:
         label: Region
 
       area:
-        label: Area km\u00B2
+        label: Area square kilometers
         type: float
 
       population:
