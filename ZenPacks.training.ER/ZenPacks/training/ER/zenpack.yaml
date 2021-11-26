@@ -31,10 +31,15 @@ classes:
 
   ErCurrency:
     base: [zenpacklib.Component]
+    monitoring_templates: [ExchangeRates]
     label: Currency
     plural_label: Currencies
 
     properties:
+      USD:
+        label: To USD
+        datapoint: exchangeRates_USD
+
       full_name:
         label: Currency full name
 
@@ -94,3 +99,55 @@ device_classes:
         - ER.Currencies
         - ER.Metals
         - ER.Countries
+
+    templates:
+      ExchangeRates:
+        description: Exchange rates monitoring using the ER API.
+        targetPythonClass: ZenPacks.training.ER.ErCurrency
+
+      datasources:
+        exchangeRates:
+          type: Python
+          plugin_classname: ZenPacks.training.ER.dsplugins.ExchangeRates
+          cycletime: "3600"
+
+          datapoints:
+            USD: GAUGE
+            EUR: GAUGE
+            JPY: GAUGE
+            GBP: GAUGE
+            AUD: GAUGE
+            CAD: GAUGE
+            CHF: GAUGE
+            CNH: GAUGE
+            HKD: GAUGE
+
+      graphs:
+        Rates:
+          units: "index"
+
+          graphpoints:
+            USD:
+              dpName: exchangeRates_USD
+              format: "%7.4lf"
+            EUR:
+              dpName: exchangeRates_EUR
+              format: "%7.4lf"
+            JPY:
+              dpName: exchangeRates_JPY
+              format: "%7.4lf"
+            GBP:
+              dpName: exchangeRates_GBP
+              format: "%7.4lf"
+            AUD:
+              dpName: exchangeRates_AUD
+              format: "%7.4lf"
+            CAD:
+              dpName: exchangeRates_CAD
+              format: "%7.4lf"
+            CHF:
+              dpName: exchangeRates_CHF
+              format: "%7.4lf"
+            CNH:
+              dpName: exchangeRates_CNH
+              format: "%7.4lf"
