@@ -38,7 +38,7 @@ classes:
     properties:
       USD:
         label: To USD
-        datapoint: rates_USD
+        datapoint: exchangeRates_USD
 
       full_name:
         label: Currency full name
@@ -105,49 +105,49 @@ device_classes:
         description: Exchange rates monitoring using the ER API.
         targetPythonClass: ZenPacks.training.ER.ErCurrency
 
-      datasources:
-        rates:
-          type: Python
-          plugin_classname: ZenPacks.training.ER.dsplugins.ExchangeRates
-          cycletime: "3600"
+        datasources:
+          exchangeRates:
+            type: Python
+            plugin_classname: ZenPacks.training.ER.dsplugins.ExchangeRates
+            cycletime: "3600"
 
-          datapoints:
-            USD: GAUGE
-            EUR: GAUGE
-            JPY: GAUGE
-            GBP: GAUGE
-            AUD: GAUGE
-            CAD: GAUGE
-            CHF: GAUGE
-            CNH: GAUGE
-            HKD: GAUGE
+            datapoints:
+              USD: GAUGE
+              EUR: GAUGE
+              JPY: GAUGE
+              GBP: GAUGE
+              AUD: GAUGE
+              CAD: GAUGE
+              CHF: GAUGE
+              CNH: GAUGE
+              HKD: GAUGE
 
-      graphs:
-        Rates:
-          units: "index"
+        graphs:
+          Rates:
+            units: "index"
 
-          graphpoints:
-            USD:
-              dpName: rates_USD
-              format: "%7.4lf"
-            EUR:
-              dpName: rates_EUR
-              format: "%7.4lf"
-            JPY:
-              dpName: rates_JPY
-              format: "%7.4lf"
-            GBP:
-              dpName: rates_GBP
-              format: "%7.4lf"
-            AUD:
-              dpName: rates_AUD
-              format: "%7.4lf"
-            CAD:
-              dpName: rates_CAD
-              format: "%7.4lf"
-            CHF:
-              dpName: rates_CHF
-              format: "%7.4lf"
-            CNH:
-              dpName: rates_CNH
-              format: "%7.4lf"
+            graphpoints:
+              USD:
+                dpName: exchangeRates_USD
+                format: "%7.4lf"
+              EUR:
+                dpName: exchangeRates_EUR
+                format: "%7.4lf"
+              JPY:
+                dpName: exchangeRates_JPY
+                format: "%7.4lf"
+              GBP:
+                dpName: exchangeRates_GBP
+                format: "%7.4lf"
+              AUD:
+                dpName: exchangeRates_AUD
+                format: "%7.4lf"
+              CAD:
+                dpName: exchangeRates_CAD
+                format: "%7.4lf"
+              CHF:
+                dpName: exchangeRates_CHF
+                format: "%7.4lf"
+              CNH:
+                dpName: exchangeRates_CNH
+                format: "%7.4lf"
