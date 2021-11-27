@@ -119,7 +119,7 @@ device_classes:
               AUD: GAUGE
               CAD: GAUGE
               CHF: GAUGE
-              CNH: GAUGE
+              CNY: GAUGE
               HKD: GAUGE
 
         graphs:
