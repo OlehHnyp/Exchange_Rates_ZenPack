@@ -40,6 +40,14 @@ classes:
         label: To USD
         datapoint: exchangeRates_USD
 
+      EUR:
+        label: To EUR
+        datapoint: exchangeRates_EUR
+
+      GBP:
+        label: To GBP
+        datapoint: exchangeRates_GBP
+
       full_name:
         label: Currency full name
 
@@ -114,13 +122,7 @@ device_classes:
             datapoints:
               USD: GAUGE
               EUR: GAUGE
-              JPY: GAUGE
               GBP: GAUGE
-              AUD: GAUGE
-              CAD: GAUGE
-              CHF: GAUGE
-              CNY: GAUGE
-              HKD: GAUGE
 
         graphs:
           Rates:
@@ -133,21 +135,30 @@ device_classes:
               EUR:
                 dpName: exchangeRates_EUR
                 format: "%7.4lf"
-              JPY:
-                dpName: exchangeRates_JPY
-                format: "%7.4lf"
               GBP:
                 dpName: exchangeRates_GBP
                 format: "%7.4lf"
-              AUD:
-                dpName: exchangeRates_AUD
+
+          USD:
+            units: "index"
+
+            graphpoints:
+              USD:
+                dpName: exchangeRates_USD
                 format: "%7.4lf"
-              CAD:
-                dpName: exchangeRates_CAD
+
+          EUR:
+            units: "index"
+
+            graphpoints:
+              EUR:
+                dpName: exchangeRates_EUR
                 format: "%7.4lf"
-              CHF:
-                dpName: exchangeRates_CHF
-                format: "%7.4lf"
-              CNH:
-                dpName: exchangeRates_CNH
+
+          GBP:
+            units: "index"
+
+            graphpoints:
+              GBP:
+                dpName: exchangeRates_GBP
                 format: "%7.4lf"
