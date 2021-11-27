@@ -18,7 +18,7 @@ from ZenPacks.zenoss.PythonCollector.datasources.PythonDataSource import (
     )
 
 # local imports
-from ZenPacks.training.CR.agent import CustomHttpAgent
+from ZenPacks.training.ER.agent import CustomHttpAgent
 
 
 class CustomResponseError(Exception):
@@ -38,8 +38,8 @@ class ExchangeRates(PythonDataSourcePlugin):
         LOG.info("config_key working")
         return (
             context.device().id,
-            context.id,
             datasource.getCycleTime(context),
+            context.id,
             "exchange rates",
             )
 
