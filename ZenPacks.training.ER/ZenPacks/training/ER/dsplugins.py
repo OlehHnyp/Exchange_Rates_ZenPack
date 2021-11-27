@@ -98,7 +98,7 @@ class ExchangeRates(PythonDataSourcePlugin):
             for datasource in config.datasources:
                 if datasource.datasource == "exchangeRates":
                     for datapoint_id in (x.id for x in datasource.points):
-                        value = result[code][datapoint_id]
+                        value = result[code]["conversion_rates"][datapoint_id]
                         dpname = "_".join((datasource.datasource, datapoint_id))
                         data["values"][datasource.component][dpname] = (value, "N")
         return data
