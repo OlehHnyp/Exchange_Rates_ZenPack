@@ -162,3 +162,57 @@ device_classes:
               GBP:
                 dpName: exchangeRates_GBP
                 format: "%7.4lf"
+
+      PreciousMetalsRates:
+        description: Precious metals rates monitoring using the ER API.
+        targetPythonClass: ZenPacks.training.ER.ErMetal
+
+        datasources:
+          MetalsRates:
+            type: Python
+            plugin_classname: ZenPacks.training.ER.dsplugins.PreciousMetals
+            cycletime: "3600"
+
+            datapoints:
+              USD: GAUGE
+              EUR: GAUGE
+              GBP: GAUGE
+
+        graphs:
+          Rates:
+            units: "index per troy ounce"
+
+            graphpoints:
+              USD:
+                dpName: MetalsRates_USD
+                format: "%7.4lf"
+              EUR:
+                dpName: MetalsRates_EUR
+                format: "%7.4lf"
+              GBP:
+                dpName: MetalsRates_GBP
+                format: "%7.4lf"
+
+          USD:
+            units: "index per troy ounce"
+
+            graphpoints:
+              USD:
+                dpName: MetalsRates_USD
+                format: "%7.4lf"
+
+          EUR:
+            units: "index per troy ounce"
+
+            graphpoints:
+              EUR:
+                dpName: MetalsRates_EUR
+                format: "%7.4lf"
+
+          GBP:
+            units: "index per troy ounce"
+
+            graphpoints:
+              GBP:
+                dpName: MetalsRates_GBP
+                format: "%7.4lf"
