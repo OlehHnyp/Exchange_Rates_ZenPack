@@ -130,7 +130,7 @@ class ExchangeRates(PythonDataSourcePlugin):
             return data
 
         event["severity"] = 0
-        event["summary"] = "No Error"
+        event["summary"] = "No Uncaught error"
         result["events"].append(event)
         return result
 
