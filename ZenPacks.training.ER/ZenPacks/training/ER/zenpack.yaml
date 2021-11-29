@@ -56,6 +56,7 @@ classes:
 
   ErMetal:
     base: [zenpacklib.Component]
+    monitoring_templates: [PreciousMetalsRates]
     label: Precious Metal
     plural_label: Precious Metals
 
