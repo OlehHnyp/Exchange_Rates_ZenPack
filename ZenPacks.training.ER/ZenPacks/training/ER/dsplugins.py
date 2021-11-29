@@ -151,8 +151,8 @@ class PreciousMetals(PythonDataSourcePlugin):
 
             url = "https://current-precious-metal-price.p.rapidapi.com/metals/v1/{}".format(metal_code)
             headers = {
-                "x-rapidapi-host": "current-precious-metal-price.p.rapidapi.com",
-                "x-rapidapi-key": datasource.zMetalsApiKey
+                "x-rapidapi-host": ["current-precious-metal-price.p.rapidapi.com"],
+                "x-rapidapi-key": [datasource.zMetalsApiKey]
             }
             try:
                 raw_response_body = yield self.custom_agent.get_response_body(url, Headers(headers))
