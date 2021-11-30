@@ -213,9 +213,6 @@ class PreciousMetals(PythonDataSourcePlugin):
                     metal_name, result["raw_metals_data"][metal_name]
                 )
                 raise error
-            else:
-                if isinstance(json_response_bodies[metal_name], dict):
-                    raise ResponseError("Check api key. {}".format(json_response_bodies[metal_name].get("message")))
 
         deserialized_result["json_metals_data"] = json_response_bodies
         try:
