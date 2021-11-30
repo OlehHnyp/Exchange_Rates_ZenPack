@@ -202,6 +202,9 @@ class PreciousMetals(PythonDataSourcePlugin):
         """
         Called first for success and error.
         """
+        if isinstance(result, Failure):
+            return result
+
         LOG.info("PreciousMetals onResult working")
         deserialized_result = {}
         json_response_bodies = {}
