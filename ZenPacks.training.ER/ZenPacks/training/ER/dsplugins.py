@@ -102,7 +102,7 @@ class ExchangeRates(PythonDataSourcePlugin):
                         try:
                             value = result[code]["conversion_rates"][datapoint_id]
                         except KeyError:
-                            raise NotSupportedValueError("{} is not supported value.".format(datapoint_id))
+                            raise NotSupportedValueError("{} is not supported datapoint.".format(datapoint_id))
                         dpname = "_".join((datasource.datasource, datapoint_id))
                         data["values"][datasource.component][dpname] = (value, "N")
         return data
@@ -235,7 +235,10 @@ class PreciousMetals(PythonDataSourcePlugin):
             for datasource in config.datasources:
                 if datasource.datasource == "MetalsRates":
                     for datapoint_id in (x.id for x in datasource.points):
-                        rate = usd_rates[datapoint_id]
+                        try:
+                            rate = usd_rates[datapoint_id]
+                        except KeyError:
+                            raise NotSupportedValueError("{} is not supported datapoint.".format(datapoint_id))
                         value = metals_data[metal_name] * rate
                         dpname = "_".join((datasource.datasource, datapoint_id))
                         data["values"][datasource.component][dpname] = (value, "N")
@@ -247,3 +250,24 @@ class PreciousMetals(PythonDataSourcePlugin):
         """
         LOG.info("onError working")
         LOG.exception("In onError - result is {} and config is {}.".format(result, config.id))
+        return result
+
+    def onComplete(self, result, config):
+        """Called last for success and error."""
+        LOG.info("onComplete working")
+        event = {
+                "device": config.id,
+                "eventClass": "/Status/HTTP",
+                "eventKey": "PreciousMetals error",
+            }
+        if isinstance(result, Failure):
+            data = self.new_data()
+            event["severity"] = 4
+            event["summary"] = str(result.value)
+            data["events"].append(event)
+            return data
+
+        event["severity"] = 0
+        event["summary"] = "No error"
+        result["events"].append(event)
+        return result
