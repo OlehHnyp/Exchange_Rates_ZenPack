@@ -113,6 +113,7 @@ class ExchangeRates(PythonDataSourcePlugin):
         """
         LOG.info("onError working")
         LOG.exception("In onError - result is {} and config is {}.".format(result, config.id))
+        return result
 
     def onComplete(self, result, config):
         """Called last for success and error."""
@@ -120,7 +121,7 @@ class ExchangeRates(PythonDataSourcePlugin):
         event = {
                 "device": config.id,
                 "eventClass": "/Status/HTTP",
-                "eventKey": "Uncaught error",
+                "eventKey": "ExchangeRates error",
             }
         if isinstance(result, Failure):
             data = self.new_data()
@@ -130,7 +131,7 @@ class ExchangeRates(PythonDataSourcePlugin):
             return data
 
         event["severity"] = 0
-        event["summary"] = "No Uncaught error"
+        event["summary"] = "No error"
         result["events"].append(event)
         return result
 
