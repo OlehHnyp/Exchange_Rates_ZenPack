@@ -36,7 +36,7 @@ class ExchangeRates(PythonDataSourcePlugin):
 
     @classmethod
     def config_key(cls, datasource, context):
-        LOG.info("config_key working")
+        LOG.info("ExchangeRates config_key working")
         return (
             context.device().id,
             datasource.getCycleTime(context),
@@ -46,14 +46,14 @@ class ExchangeRates(PythonDataSourcePlugin):
 
     @classmethod
     def params(cls, datasource, context):
-        LOG.info("params working")
+        LOG.info("ExchangeRates params working")
         return {
             "currency_code": context.id,
             }
 
     @inlineCallbacks
     def collect(self, config):
-        LOG.info("collect working")
+        LOG.info("ExchangeRates collect working")
         raw_response_bodies = {}
 
         for datasource in config.datasources:
@@ -74,7 +74,7 @@ class ExchangeRates(PythonDataSourcePlugin):
         """
         Called first for success and error.
         """
-        LOG.info("onResult working")
+        LOG.info("ExchangeRates onResult working")
         json_response_bodies = {}
         for code in result:
             try:
@@ -92,7 +92,7 @@ class ExchangeRates(PythonDataSourcePlugin):
         """
         Called only on success. After onResult, before onComplete.
         """
-        LOG.info("onSuccess working")
+        LOG.info("ExchangeRates onSuccess working")
         data = self.new_data()
 
         for code in result:
@@ -111,13 +111,13 @@ class ExchangeRates(PythonDataSourcePlugin):
         """
         Called only on error. After onResult, before onComplete.
         """
-        LOG.info("onError working")
+        LOG.info("ExchangeRates onError working")
         LOG.exception("In onError - result is {} and config is {}.".format(result, config.id))
         return result
 
     def onComplete(self, result, config):
         """Called last for success and error."""
-        LOG.info("onComplete working")
+        LOG.info("ExchangeRates onComplete working")
         event = {
                 "device": config.id,
                 "eventClass": "/Status/HTTP",
@@ -147,7 +147,7 @@ class PreciousMetals(PythonDataSourcePlugin):
 
     @classmethod
     def config_key(cls, datasource, context):
-        LOG.info("config_key working")
+        LOG.info("PreciousMetals config_key working")
         return (
             context.device().id,
             datasource.getCycleTime(context),
@@ -157,14 +157,14 @@ class PreciousMetals(PythonDataSourcePlugin):
 
     @classmethod
     def params(cls, datasource, context):
-        LOG.info("params working")
+        LOG.info("PreciousMetals params working")
         return {
             "precious_metal_name": context.id,
             }
 
     @inlineCallbacks
     def collect(self, config):
-        LOG.info("collect working")
+        LOG.info("PreciousMetals collect working")
         result = {}
         raw_response_bodies = {}
 
@@ -202,7 +202,7 @@ class PreciousMetals(PythonDataSourcePlugin):
         """
         Called first for success and error.
         """
-        LOG.info("onResult working")
+        LOG.info("PreciousMetals onResult working")
         deserialized_result = {}
         json_response_bodies = {}
         for metal_name in result["raw_metals_data"]:
@@ -226,7 +226,7 @@ class PreciousMetals(PythonDataSourcePlugin):
         """
         Called only on success. After onResult, before onComplete.
         """
-        LOG.info("onSuccess working")
+        LOG.info("PreciousMetals onSuccess working")
         data = self.new_data()
         metals_data = result["json_metals_data"]
         usd_rates = result["json_usd_rates"]
@@ -248,13 +248,13 @@ class PreciousMetals(PythonDataSourcePlugin):
         """
         Called only on error. After onResult, before onComplete.
         """
-        LOG.info("onError working")
+        LOG.info("PreciousMetals onError working")
         LOG.exception("In onError - result is {} and config is {}.".format(result, config.id))
         return result
 
     def onComplete(self, result, config):
         """Called last for success and error."""
-        LOG.info("onComplete working")
+        LOG.info("PreciousMetals onComplete working")
         event = {
                 "device": config.id,
                 "eventClass": "/Status/HTTP",
