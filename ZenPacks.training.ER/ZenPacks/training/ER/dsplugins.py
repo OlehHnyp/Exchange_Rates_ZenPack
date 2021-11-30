@@ -126,7 +126,7 @@ class ExchangeRates(PythonDataSourcePlugin):
         if isinstance(result, Failure):
             data = self.new_data()
             event["severity"] = 4
-            event["summary"] = str(result)
+            event["summary"] = str(result.value)
             data["events"].append(event)
             return data
 
