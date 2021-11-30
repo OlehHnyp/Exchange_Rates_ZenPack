@@ -82,10 +82,6 @@ class ExchangeRates(PythonDataSourcePlugin):
             except ValueError as error:
                 error.message += "{}: can't deserialize response body: {}".format(code, result[code])
                 raise error
-            if json_response_bodies[code]["result"] == "error":
-                raise ResponseError(
-                    "{}, {} response error: {}".format(config.id, code, json_response_bodies[code]["error-type"])
-                )
         return json_response_bodies
 
     def onSuccess(self, result, config):
