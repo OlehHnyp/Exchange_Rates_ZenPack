@@ -86,6 +86,7 @@ classes:
       population:
         label: Population
         type: int
+        renderer: Zenoss.render.longIntegerRenderer
 
       timezones:
         label: Timezones
