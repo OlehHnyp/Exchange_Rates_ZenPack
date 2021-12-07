@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:zcml="http://namespaces.zope.org/zcml">
-    <resourseDirectory
+    <browser:resourseDirectory
         name="ErCountryRendererJavaScript"
         directory="resources"
         />
 
-    <viewlet
+    <browser:viewlet
         name="js-ErCountryLongIntRendererJs"
         paths="/++resource++ErCountryRendererJavaScript/longIntRenderer.js"
         weight="10"
