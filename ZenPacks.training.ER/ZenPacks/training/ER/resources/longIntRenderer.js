@@ -12,9 +12,11 @@ Ext.apply(Zenoss.render, {
         let strNumber = String(n)
         let reverseStrNumber = reverseString(strNumber)
         let array = reverseStrNumber.match(regex)
-        let splitedReverseStrNumber = array.reduce((a, b)=>a + " " + b)
-        let splitedStrNumber = reverseString(splitedReverseStrNumber)
-
-        return splitedStrNumber
+        if(array){
+            let splitedReverseStrNumber = array.reduce((a, b)=>a + " " + b)
+            let splitedStrNumber = reverseString(splitedReverseStrNumber)
+            return splitedStrNumber
+        }
+        return n
     }
 });
