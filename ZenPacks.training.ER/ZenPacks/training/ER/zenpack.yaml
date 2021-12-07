@@ -82,6 +82,7 @@ classes:
       area:
         label: Area square kilometers
         type: float
+        renderer: Zenoss.render.longIntegerRenderer
 
       population:
         label: Population
