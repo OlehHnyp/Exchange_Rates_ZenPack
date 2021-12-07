@@ -12,7 +12,7 @@
         name="js-ErCountryLongIntRendererJs"
         paths="/++resource++ErCountryRendererJavaScript/longIntRenderer.js"
         weight="10"
-        for="ZenPacks.training.ER.ErCountry"
+        for="*"
         manager="Products.ZenUI3.browser.interfaces.IJavaScriptSrcManager"
         class="Products.ZenUI3.browser.javascript.JavaScriptSrcBundleViewlet"
         permission="zope2.Public"
