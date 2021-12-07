@@ -11,7 +11,7 @@ Ext.apply(Zenoss.render, {
         const regex = /\d{1,3}/g
         let strNumber = String(n)
         let reverseStrNumber = reverseString(strNumber)
-        let array = reverseStrNumber.match(regexp)
+        let array = reverseStrNumber.match(regex)
         let splitedReverseStrNumber = array.reduce((a, b)=>a + " " + b)
         let splitedStrNumber = reverseString(splitedReverseStrNumber)
 
