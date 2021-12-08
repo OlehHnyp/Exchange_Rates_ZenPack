@@ -18,7 +18,10 @@ Ext.apply(Zenoss.render, {
         if(array){
             let splitedReverseStrNumber = array.join(" ")
             let splitedStrNumber = reverseString(splitedReverseStrNumber)
-            return splitedStrNumber + "." + trailingNumber
+            if(trailingNumber){
+                return splitedStrNumber + "." + trailingNumber
+                }
+            return splitedStrNumber
         }
         return n
     }
