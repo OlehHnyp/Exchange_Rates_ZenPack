@@ -10,12 +10,15 @@ Ext.apply(Zenoss.render, {
 
         const regex = /\d{1,3}/g
         let strNumber = String(n)
-        let reverseStrNumber = reverseString(strNumber)
+        let numberArray = strNumber.split(".")
+        let leadingNumber = numberArray.shift()
+        let trailingNumber = numberArray.join()
+        let reverseStrNumber = reverseString(leadingNumber)
         let array = reverseStrNumber.match(regex)
         if(array){
-            let splitedReverseStrNumber = array.reduce((a, b)=>a + " " + b)
+            let splitedReverseStrNumber = array.join(" ")
             let splitedStrNumber = reverseString(splitedReverseStrNumber)
-            return splitedStrNumber
+            return splitedStrNumber + trailingNumber
         }
         return n
     }
