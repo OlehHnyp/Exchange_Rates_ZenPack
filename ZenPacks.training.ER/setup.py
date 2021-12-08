@@ -4,7 +4,7 @@
 # NB: PACKAGES is deprecated
 NAME = "ZenPacks.training.ER"
 VERSION = "1.0.0dev"
-AUTHOR = "Your Name Here"
+AUTHOR = "Oleh Hnyp"
 LICENSE = ""
 NAMESPACE_PACKAGES = ['ZenPacks', 'ZenPacks.training']
 PACKAGES = ['ZenPacks', 'ZenPacks.training', 'ZenPacks.training.ER']
