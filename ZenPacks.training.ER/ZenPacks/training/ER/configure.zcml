@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+    <browser:resourceDirectory
+        name="ErCountryRendererJavaScript"
+        directory="resources"
+        />
+
+    <browser:viewlet
+        name="js-ErCountryLongIntRendererJs"
+        paths="/++resource++ErCountryRendererJavaScript/longIntRenderer.js"
+        weight="10"
+        for="*"
+        manager="Products.ZenUI3.browser.interfaces.IJavaScriptSrcManager"
+        class="Products.ZenUI3.browser.javascript.JavaScriptSrcBundleViewlet"
+        permission="zope2.Public"
+        />
+</configure>

@@ -1,0 +1,221 @@
+name: ZenPacks.training.ER
+
+zProperties:
+  DEFAULTS:
+    category: Exchange Rates
+
+  zCurrencyCodes:
+    type: lines
+    description: Currency codes to track.
+    default:
+      - USD
+      - EUR
+      - GBP
+
+  zCurrencyApiKey:
+    type: password
+    description: API key for app.exchangerate-api.com
+
+  zMetals:
+    type: lines
+    description: Metals to track (use Gold, Silver, Platinum, Palladium, Rhodium or Cobalt only).
+
+  zMetalsApiKey:
+    type: password
+    description: Key for precious metals API.
+
+classes:
+  ErDevice:
+    base: [zenpacklib.Device]
+    label: Exchange Rates API
+
+  ErCurrency:
+    base: [zenpacklib.Component]
+    monitoring_templates: [ExchangeRates]
+    label: Currency
+    plural_label: Currencies
+
+    properties:
+      USD:
+        label: To USD
+        datapoint: exchangeRates_USD
+
+      EUR:
+        label: To EUR
+        datapoint: exchangeRates_EUR
+
+      GBP:
+        label: To GBP
+        datapoint: exchangeRates_GBP
+
+      full_name:
+        label: Currency full name
+
+      short_name:
+        label: Short name
+
+  ErMetal:
+    base: [zenpacklib.Component]
+    monitoring_templates: [PreciousMetalsRates]
+    label: Precious Metal
+    plural_label: Precious Metals
+
+  ErCountry:
+    base: [zenpacklib.Component]
+    label: Country
+    plural_label: Countries
+
+    properties:
+      code:
+        label: Code
+
+      independent:
+        type: boolean
+        label: Independent
+
+      capital:
+        label: Capital
+
+      region:
+        label: Region
+
+      area:
+        label: Area square kilometers
+        type: float
+        renderer: Zenoss.render.longIntegerRenderer
+
+      population:
+        label: Population
+        type: int
+        renderer: Zenoss.render.longIntegerRenderer
+
+      timezones:
+        label: Timezones
+        type: lines
+
+
+class_relationships:
+  - ErDevice(erCurrencies) 1:MC ErCurrency(erDevice)
+  - ErDevice(erMetals) 1:MC ErMetal(erDevice)
+  - ErDevice(erDeviceCountries) 1:MC ErCountry(ErDevice)
+  - ErCurrency(erCurrencyCountries) 1:M ErCountry(erCountryCurrency)
+
+device_classes:
+  /ExchangeRates:
+    zProperties:
+      zPythonClass: ZenPacks.training.ER.ErDevice
+      zPingMonitorIgnore: true
+      zSnmpMonitorIgnore: true
+      zCollectorPlugins:
+        - ER.Currencies
+        - ER.Metals
+        - ER.Countries
+
+    templates:
+      ExchangeRates:
+        description: Exchange rates monitoring using the ER API.
+        targetPythonClass: ZenPacks.training.ER.ErCurrency
+
+        datasources:
+          exchangeRates:
+            type: Python
+            plugin_classname: ZenPacks.training.ER.dsplugins.ExchangeRates
+            cycletime: "3600"
+
+            datapoints:
+              USD: GAUGE
+              EUR: GAUGE
+              GBP: GAUGE
+
+        graphs:
+          Rates:
+            units: "index"
+
+            graphpoints:
+              USD:
+                dpName: exchangeRates_USD
+                format: "%7.4lf"
+              EUR:
+                dpName: exchangeRates_EUR
+                format: "%7.4lf"
+              GBP:
+                dpName: exchangeRates_GBP
+                format: "%7.4lf"
+
+          USD:
+            units: "index"
+
+            graphpoints:
+              USD:
+                dpName: exchangeRates_USD
+                format: "%7.4lf"
+
+          EUR:
+            units: "index"
+
+            graphpoints:
+              EUR:
+                dpName: exchangeRates_EUR
+                format: "%7.4lf"
+
+          GBP:
+            units: "index"
+
+            graphpoints:
+              GBP:
+                dpName: exchangeRates_GBP
+                format: "%7.4lf"
+
+      PreciousMetalsRates:
+        description: Precious metals rates monitoring using the ER API.
+        targetPythonClass: ZenPacks.training.ER.ErMetal
+
+        datasources:
+          MetalsRates:
+            type: Python
+            plugin_classname: ZenPacks.training.ER.dsplugins.PreciousMetals
+            cycletime: "3600"
+
+            datapoints:
+              USD: GAUGE
+              EUR: GAUGE
+              GBP: GAUGE
+
+        graphs:
+          Rates:
+            units: "index per troy ounce"
+
+            graphpoints:
+              USD:
+                dpName: MetalsRates_USD
+                format: "%7.4lf"
+              EUR:
+                dpName: MetalsRates_EUR
+                format: "%7.4lf"
+              GBP:
+                dpName: MetalsRates_GBP
+                format: "%7.4lf"
+
+          USD:
+            units: "index per troy ounce"
+
+            graphpoints:
+              USD:
+                dpName: MetalsRates_USD
+                format: "%7.4lf"
+
+          EUR:
+            units: "index per troy ounce"
+
+            graphpoints:
+              EUR:
+                dpName: MetalsRates_EUR
+                format: "%7.4lf"
+
+          GBP:
+            units: "index per troy ounce"
+
+            graphpoints:
+              GBP:
+                dpName: MetalsRates_GBP
+                format: "%7.4lf"
