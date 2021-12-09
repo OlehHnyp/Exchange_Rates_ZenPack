@@ -29,6 +29,11 @@ classes:
     base: [zenpacklib.Device]
     label: Exchange Rates API
 
+    properties:
+      examplePropery:
+        label: Example property
+        default: Device JS works
+
   ErCurrency:
     base: [zenpacklib.Component]
     monitoring_templates: [ExchangeRates]
